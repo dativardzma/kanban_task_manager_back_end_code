@@ -6,7 +6,7 @@ from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIV
 from rest_framework.response import Response
 from rest_framework import status
 
-class TableView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
+class TableView(ListCreateAPIView, RetrieveUpdateDestroyAPIView, APIView):
     serializer_class = TableSerializer
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -57,7 +57,7 @@ class TableView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class BlogView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
+class BlogView(ListCreateAPIView, RetrieveUpdateDestroyAPIView, APIView):
     serializer_class = BlogSerializer
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -118,7 +118,7 @@ class BlogView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
             serializer = BlogSerializer(blogs, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)    
 
-class SubTaskView(ListCreateAPIView, RetrieveUpdateDestroyAPIView):
+class SubTaskView(ListCreateAPIView, RetrieveUpdateDestroyAPIView, APIView):
     serializer_class = SubTaskSerializer
     def post(self,request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
